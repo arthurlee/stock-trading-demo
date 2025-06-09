@@ -1,10 +1,12 @@
 plugins {
     kotlin("jvm") version "2.1.21"
+//    kotlin("plugin.lombok") version "2.1.21"
     kotlin("plugin.spring") version "2.1.21"
-    kotlin("plugin.lombok") version "2.1.21"
+
+//    id("io.freefair.lombok") version "8.13.1"
     id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
-    id("io.freefair.lombok") version "8.13.1"
+
 }
 
 group = "com.boyal.demo"
@@ -33,8 +35,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+//    compileOnly("org.projectlombok:lombok")
+//    annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
