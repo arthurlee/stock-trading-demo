@@ -4,19 +4,16 @@ import com.boyal.demo.stockmarket.controller.dto.StockPublishRequest
 import com.boyal.demo.stocktrading.client.StockMarketClient
 import com.boyal.demo.stocktrading.exception.StockCreationException
 import com.boyal.demo.stocktrading.exception.StockNotFoundException
-import com.boyal.demo.stocktrading.model.Stock
 import com.boyal.demo.stocktrading.model.StockRequest
 import com.boyal.demo.stocktrading.model.StockResponse
 import com.boyal.demo.stocktrading.repository.StocksRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.switchIfEmpty
 import java.math.BigDecimal
-import java.util.Currency
+
 
 @Service
 class StocksService {
