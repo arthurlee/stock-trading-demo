@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: stock-trading
+server:
+  port: 8060
