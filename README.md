@@ -3,6 +3,7 @@ The source code for the course  "Reactive Streams Using Spring WebFlux 6" in plu
 I use the kotlin and current version of Spring Boot to build it.
 
 - Spring Boot 3.5.0
+- Kotlin 2.1.21
 
 
 ## pluralsight Course
