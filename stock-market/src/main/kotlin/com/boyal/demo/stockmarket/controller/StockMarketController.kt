@@ -28,7 +28,7 @@ class StockMarketController {
         this.stockPublishingService = sp
     }
 
-    @GetMapping("/currencyrates")
+    @GetMapping("/currency/rates")
     fun getCurrentRates(
         @RequestHeader("X-Trace-Id", required = false)  traceId: String?
     ): Flux<CurrencyRate> {
