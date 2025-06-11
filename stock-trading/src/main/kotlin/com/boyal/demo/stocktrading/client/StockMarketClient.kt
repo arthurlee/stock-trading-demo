@@ -34,7 +34,7 @@ class StockMarketClient {
                             .header("X-Trace-Id", UUID.randomUUID().toString())
                             .build())
                 })
-            .build();
+            .build()
     }
 
     fun getCurrencyRates(): Flux<CurrencyRate> {
@@ -51,7 +51,7 @@ class StockMarketClient {
             .uri("/stocks/publish")
             .body(BodyInserters.fromValue(stockPublishRequest))
             .exchangeToMono { response ->
-                if (! response.statusCode().isError()) {
+                if (! response.statusCode().isError) {
                     response.bodyToMono(StockPublishResponse::class.java)
                 } else {
                     response.bodyToMono(ProblemDetail::class.java)
