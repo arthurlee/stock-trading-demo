@@ -63,7 +63,8 @@ class StocksServiceTest {
     }
 
     @Test
-    fun shouldThrowStockCreateExceptionWhenUnableToSave() {
+    // should throw StockCreationException when unable to save
+    fun shouldThrowStockCreationExceptionWhenUnableToSave() {
         // GIVEN
         val stockRequest = StockRequest(STOCK_NAME, STOCK_PRICE, STOCK_CURRENCY)
         `when`(stocksRepository.save(any())).thenThrow(RuntimeException("Connection Lost"))
@@ -71,6 +72,23 @@ class StocksServiceTest {
         // WHEN
         StepVerifier.create(stocksService.createStock(stockRequest))
         // THEN
+            .verifyError(StockCreationException::class.java)
+    }
+
+    @Test
+    // Should throw StockCreationException when StockMarket failed
+    fun shouldThrowStockCreationExceptionWhenStockMarketFailed() {
+        // GIVEN
+        val stockRequest = StockRequest(STOCK_NAME, STOCK_PRICE, STOCK_CURRENCY)
+        val stock = Stock(STOCK_ID, STOCK_CURRENCY, STOCK_PRICE, STOCK_CURRENCY)
+        val stockPublishResponse = StockPublishResponse(STOCK_ID, STOCK_PRICE, STOCK_CURRENCY, "FAIL")
+
+        `when`(stocksRepository.save(any())).thenReturn(Mono.just(stock))
+        `when`(stockMarketClient.publishStock(any())).thenReturn(Mono.just(stockPublishResponse))
+
+        // WHEN
+        StepVerifier.create(stocksService.createStock(stockRequest))
+            // THEN
             .verifyError(StockCreationException::class.java)
     }
 }
