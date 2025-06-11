@@ -1,5 +1,6 @@
 import com.boyal.demo.stockmarket.controller.dto.StockPublishResponse
 import com.boyal.demo.stocktrading.client.StockMarketClient
+import com.boyal.demo.stocktrading.exception.StockCreationException
 import com.boyal.demo.stocktrading.model.Stock
 import com.boyal.demo.stocktrading.model.StockRequest
 import com.boyal.demo.stocktrading.repository.StocksRepository
@@ -59,5 +60,17 @@ class StocksServiceTest {
                 assertEquals(STOCK_CURRENCY, stockResponse.currency)
             } }
             .verifyComplete()
+    }
+
+    @Test
+    fun shouldThrowStockCreateExceptionWhenUnableToSave() {
+        // GIVEN
+        val stockRequest = StockRequest(STOCK_NAME, STOCK_PRICE, STOCK_CURRENCY)
+        `when`(stocksRepository.save(any())).thenThrow(RuntimeException("Connection Lost"))
+
+        // WHEN
+        StepVerifier.create(stocksService.createStock(stockRequest))
+        // THEN
+            .verifyError(StockCreationException::class.java)
     }
 }
