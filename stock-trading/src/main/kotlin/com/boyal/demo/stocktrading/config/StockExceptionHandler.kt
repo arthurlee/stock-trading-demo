@@ -1,4 +1,4 @@
-package com.boyal.demo.stocktrading.client
+package com.boyal.demo.stocktrading.config
 
 import com.boyal.demo.stocktrading.exception.StockCreationException
 import com.boyal.demo.stocktrading.exception.StockNotFoundException
