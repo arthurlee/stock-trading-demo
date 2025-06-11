@@ -80,6 +80,7 @@ class StockIT {
             .responseBody
 
         assertNotNull(problemDetail)
-        assertTrue { problemDetail!!.detail!!.contains("Stock not found") }
+        assertNotNull(problemDetail.detail)
+        assertTrue { problemDetail.detail!!.contains("Stock not found") }
     }
 }
