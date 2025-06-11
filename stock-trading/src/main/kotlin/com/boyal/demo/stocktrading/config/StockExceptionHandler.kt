@@ -18,9 +18,9 @@ class StockExceptionHandler {
     }
 
     @ExceptionHandler(StockNotFoundException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleStockPublishException(ex: StockNotFoundException): ProblemDetail {
-        val pd: ProblemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.message)
+        val pd: ProblemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.message)
         pd.title = "Stock Not Found"
         return pd
     }
